@@ -1,6 +1,7 @@
 
 <h1>WorkVision HR Management Application</h1>
 <p align="center"><img src="https://i.postimg.cc/hjnWdKz3/workkkkvision.png" alt="project-image"></p>
+<p>[![workkkkvision.png](https://i.postimg.cc/hjnWdKz3/workkkkvision.png)](https://postimg.cc/SXgv0FGW)</p>
 <h4>this Repository is for the Web APP</h4>
 <p>Our Web and Desktop application is designed to help HR managers and employees streamline administrative operations within their company. The HR Manager can use the application to manage employee files, process job applications, evaluate candidates, and process leave requests. They can also use the application to manage premiums, events, and user accounts.</p>
 <p>Employees can use the application to request time off, check their available vacation days, and participate in company events. Candidates can use the application to apply for jobs and view available job openings.</p>
