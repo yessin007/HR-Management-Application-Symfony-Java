@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+
+
+  {% block body %}
+  <main id="main">
+    {% for e in offre %}
+    {% set a="uploads/"~e.name%}
+    {% set b=e.offreemploi.nomOffre %}
+    {% set c=e.offreemploi.description %}
+    {% set d="portfolioDetails/"~e.offreemploi.idOffre %}
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>{{ b }}</h2>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide">
+                  <img src="{{ asset(a) }}" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Offer Description</h3>
+              <ul>
+                <li>{{ c }}</li>
+              </ul>
+              <a href={{ path("app_candidat_new")}} class="filter-active"><h2>Demand This Offer</h2></a>
+              {% for e in offre %}
+                {% if rating.rating is  null %}
+                {% set d="http://127.0.0.1:8000/"~app.user.iduser~"/portfolioDetails/"~e.offreemploi.idOffre~"/like" %}
+                {% set f="http://127.0.0.1:8000/"~app.user.iduser~"/portfolioDetails/"~e.offreemploi.idOffre~"/dislike" %}
+                <a href={{ absolute_url(d) }}><button type="button" class="btn btn-success">like</button></a>
+                <a href={{ absolute_url(f) }}> <button type="button" class="btn btn-danger">dislike</button></a>
+
+                  {% endif %}
+                {% if rating.rating is not null %}
+                <h2>You have rated this offer </h2>
+                  {% endif %}
+              {% endfor %}
+
+              
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+    {% endfor %}
+  </main><!-- End #main -->
+
+
+{% endblock %}
+

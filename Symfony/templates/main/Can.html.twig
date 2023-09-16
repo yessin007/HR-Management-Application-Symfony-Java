@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{#
+{% block header %}
+    <header id="header" class="fixed-top " style="background-color: #0a0e14">
+        <div class="container d-flex align-items-center justify-content-lg-between">
+
+            <h1 class="logo me-auto me-lg-0"><a href={{ path("app_main_can")}}>WorkVision</a><img  alt="" src="{{ asset("assets/img/WORKVISION .png") }}"></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto active" href={{ path("app_main_can")}}>Home</a></li>
+                    <li><a class="nav-link scrollto" href="{{ path('app_user_front_edit', {'iduser': app.user.iduser}) }}">Profil</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            <a href={{ path("app_logout")}} class="get-started-btn scrollto">Logout</a>
+
+        </div>
+    </header><!-- End Header -->
+{% endblock %} #}
+
+{% block body %}
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+                <div class="col-xl-6 col-lg-8">
+                    <h1>Welcome to WorkVision Website<span>.</span></h1>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+                    <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                        <img src="{{ asset('assets/img/about.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
+                        <h1>Welcome back {{ app.user.nom }} {{ app.user.prenom }}</h1>
+                        <br>
+                        <h3>Here's our Top 3 most liked offers for you</h3>
+                        <ul>
+                                {% for x in lists %}
+
+                            <li><i class="ri-check-double-line"></i> {{ x.nomoffre}} </li>
+
+                                {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+
+
+
+        <!-- ======= Features Section ======= -->
+        <section id="features" class="features">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+                    <div class="image col-lg-6" style='background-image: url({{ asset("assets/img/features.jpg") }});' data-aos="fade-right"></div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                        <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
+                            <i class="bx bx-receipt"></i>
+                            <h4>Top Service</h4>
+
+                        </div>
+                        <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+                            <i class="bx bx-cube-alt"></i>
+                            <h4>Meilleur Salaire</h4>
+
+                        </div>
+                        <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+                            <i class="bx bx-images"></i>
+                            <h4>Votre comfort est notre principale Objectif</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Features Section -->
+
+        <!-- ======= Services Section ======= -->
+
+
+        <!-- ======= Portfolio Section ======= -->
+        <section id="portfolio" class="portfolio">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+
+                    <p>Découvrir les offres d'emploi disponiible</p>
+                </div>
+
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="portfolio-flters">
+
+                            <li data-filter="*" class="filter-active">All</li>
+                            {% for e in list %}
+                                {% set a="uploads/"~e.name %}
+                                {% set b=e.offreemploi.nomOffre %}
+                                {% set c=e.offreemploi.description %}
+                                {% set f=e.offreemploi.skills %}
+                                {% set x=".filter-"~e.offreemploi.skills %}
+                                {% set d="portfolioDetails/"~e.offreemploi.idOffre %}
+                                {% set y="col-lg-4 col-md-6 portfolio-item filter-"~e.offreemploi.skills %}
+                            <li data-filter={{ x }}>{{ f }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                {% for e in list %}
+                {% set a="uploads/"~e.name %}
+                {% set b=e.offreemploi.nomOffre %}
+                {% set c=e.offreemploi.description %}
+                {% set f=e.offreemploi.skills %}
+                {% set d="portfolioDetails/"~e.offreemploi.idOffre %}
+                {% set y="col-lg-4 col-md-6 portfolio-item filter-"~e.offreemploi.skills %}
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-{{ f }}">
+                        <div class="portfolio-wrap">
+                            <img src={{ asset(a)}} class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>{{ b }}</h4>
+                                <p>{{ c }}</p>
+                                <div class="portfolio-links">
+                                    <a href="{{ asset(a) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ b }}"><i class="bx bx-plus"></i></a>
+                                    <a href="{{ d   }}" title="More Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Section -->
+
+
+
+
+    </main><!-- End #main -->
+{% endblock %}
